@@ -1,0 +1,42 @@
+﻿.body {
+    background-color: #f7fafc;
+    padding: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #9ae6b4;
+}
+
+.description {
+    color: #4a5568;
+    margin-top: 8px;
+    font-size: 1rem;
+}
+
+.btn {
+    background-color: #4a5568;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 16px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #2d3748;
+}

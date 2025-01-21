@@ -1,0 +1,18 @@
+﻿.items-stretch {
+    align-items: stretch;
+}
+.items-center {
+    align-items: center;
+}
+
+.flex {
+    display: flex;
+}
+
+section#buttons-wrapper {
+    align-items: stretch !important;
+}
+
+body {
+    background-color: red !important;
+}

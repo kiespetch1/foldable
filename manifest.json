@@ -4,21 +4,23 @@
   "description": "Allows you to easily fold and unfold Swagger UI tabs",
   "version": "0.1",
   "action": {
-    "default_popup": "src/info.html",
+    "default_popup": "info.html",
     "default_icon": "images/icon-128.png"
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/styles/output.css", "images/assets/arrow-down.svg" ],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "content_scripts": [
     {
-      "js": ["scripts/index.js"],
       "matches": [
-        "https://localhost:7000/*",
-        "https://localhost:7001/*",
-        "https://localhost:7002/*",
-        "https://localhost:7003/*",
-        "https://localhost:7004/*",
-        "https://localhost:7005/*",
-        "https://orders.r-tech.addcode.ru/*"
-      ]
+        "https://localhost:*/*",
+        "https://*.r-tech.addcode.ru/*"
+      ],
+      "js": ["scripts/index.js"],
+      "css": ["src/styles/output.css"]
     }
   ]
 }
