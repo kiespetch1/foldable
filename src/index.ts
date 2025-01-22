@@ -1,5 +1,12 @@
 function addFoldButton(): void {
     const wrapper = document.querySelector<HTMLElement>(".schemes.wrapper.block.col-12");
+    const authWrapper = document.querySelector<HTMLElement>(".btn.authorize.unlocked");
+    if (!authWrapper) {
+        console.error(
+            "cannot find .btn.authorize.unlocked element"
+        )
+        return
+    }
     if (!wrapper) {
         console.error(
             "cannot find .schemes.wrapper.block.col-12 element"
@@ -36,6 +43,8 @@ function addFoldButton(): void {
     unfoldButton.appendChild(arrowUpSvg);
     unfoldButton.onclick = unfoldAll;
 
+    authWrapper.classList.add("m-0-i");
+    wrapper.classList.add("justify-end", "gap-10")
     wrapper.id = "buttons-wrapper";
     wrapper.appendChild(foldButton);
     wrapper.appendChild(unfoldButton);

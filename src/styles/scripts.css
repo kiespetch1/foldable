@@ -6,10 +6,28 @@
     display: flex;
 }
 
-section#buttons-wrapper {
-    align-items: stretch;
-}
-
 .mt-2 {
     margin-top: 2px;
+}
+
+.m-0-i {
+    margin: 0 !important;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.btn.authorize span {
+    float: left;
+    padding: 4px 10px 0 0 !important;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+section#buttons-wrapper {
+    justify-content: flex-end;
+    align-items: stretch;
 }
