@@ -35,12 +35,12 @@ function addFoldButton(): void {
 
     foldButton.classList.add("flex", "items-center");
     foldButton.appendChild(foldButtonContent);
-    foldButton.appendChild(arrowDownSvg);
+    foldButton.appendChild(arrowUpSvg);
     foldButton.onclick = foldAll;
 
     unfoldButton.classList.add("flex", "items-center");
     unfoldButton.appendChild(unfoldButtonContent);
-    unfoldButton.appendChild(arrowUpSvg);
+    unfoldButton.appendChild(arrowDownSvg);
     unfoldButton.onclick = unfoldAll;
 
     authWrapper.classList.add("m-0-i");
