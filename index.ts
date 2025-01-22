@@ -114,9 +114,5 @@ const unfoldAll = (): void => {
 };
 
 (() => {
-    if (document.querySelector(".schemes")) {
-        addFoldButton();
-    } else {
         observeWrapper();
-    }
 })();

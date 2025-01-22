@@ -25,7 +25,7 @@
         "http://localhost:*/*",
         "https://*.r-tech.addcode.ru/*"
       ],
-      "css": ["src/styles/scripts.css"],
+      "css": ["styles/scripts.css"],
       "js": ["scripts/index.js"],
       "run_at": "document_start"
     }
