@@ -1,7 +1,4 @@
-﻿.items-stretch {
-    align-items: stretch;
-}
-.items-center {
+﻿.items-center {
     align-items: center;
 }
 
@@ -10,9 +7,9 @@
 }
 
 section#buttons-wrapper {
-    align-items: stretch !important;
+    align-items: stretch;
 }
 
-body {
-    background-color: red !important;
+.mt-2 {
+    margin-top: 2px;
 }

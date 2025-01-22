@@ -1,33 +1,47 @@
 function addFoldButton(): void {
     const wrapper = document.querySelector<HTMLElement>(".schemes.wrapper.block.col-12");
     if (!wrapper) {
-        console.log("не удалось найти враппер кнопок")
+        console.error(
+            "cannot find .schemes.wrapper.block.col-12 element"
+        )
         return
-    } else {
-        console.log("враппер кнопок найден")
     }
-
 
     const foldButton = document.createElement("button");
     foldButton.classList.add("btn", "authorize", "unlocked");
     const foldButtonContent = document.createElement("span");
     foldButtonContent.textContent = "Fold all";
 
-    const arrowSvg = document.createElement("img");
-    arrowSvg.src = chrome.runtime.getURL("images/assets/arrow-down.svg")
-    arrowSvg.alt = "Arrow down";
+    const unfoldButton = document.createElement("button");
+    unfoldButton.classList.add("btn", "authorize", "unlocked");
+    const unfoldButtonContent = document.createElement("span");
+    unfoldButtonContent.textContent = "Unfold all";
+
+    const arrowDownSvg = document.createElement("img");
+    arrowDownSvg.src = chrome.runtime.getURL("images/assets/arrow-down.svg")
+    arrowDownSvg.alt = "Arrow down";
+    arrowDownSvg.classList.add("mt-2")
+    const arrowUpSvg = document.createElement("img");
+    arrowUpSvg.src = chrome.runtime.getURL("images/assets/arrow-up.svg")
+    arrowUpSvg.alt = "Arrow up";
+    arrowUpSvg.classList.add("mt-2")
 
     foldButton.classList.add("flex", "items-center");
     foldButton.appendChild(foldButtonContent);
-    foldButton.appendChild(arrowSvg);
+    foldButton.appendChild(arrowDownSvg);
+    foldButton.onclick = foldAll;
+
+    unfoldButton.classList.add("flex", "items-center");
+    unfoldButton.appendChild(unfoldButtonContent);
+    unfoldButton.appendChild(arrowUpSvg);
+    unfoldButton.onclick = unfoldAll;
 
     wrapper.id = "buttons-wrapper";
-    wrapper.classList.add("flex", "items-center");
     wrapper.appendChild(foldButton);
-    console.log("Кнопка добавлена");
+    wrapper.appendChild(unfoldButton);
 }
 
-function findAuthWrapperInNode(node: Node): boolean {
+const findAuthWrapperInNode = (node: Node): boolean => {
     if (!(node instanceof Element)) {
         return false;
     }
@@ -38,15 +52,14 @@ function findAuthWrapperInNode(node: Node): boolean {
 
     const found = node.querySelector(".schemes");
     return !!found;
-}
+};
 
-function observeWrapper(): void {
+const observeWrapper = (): void => {
     const observer = new MutationObserver((mutations, obs) => {
         for (const mutation of mutations) {
             if (mutation.type === "childList") {
                 for (const addedNode of mutation.addedNodes) {
                     if (findAuthWrapperInNode(addedNode)) {
-                        console.log("Нашли .auth-wrapper в добавленных элементах");
                         addFoldButton();
                         obs.disconnect();
                         return;
@@ -59,7 +72,6 @@ function observeWrapper(): void {
                     mutation.target instanceof Element &&
                     mutation.target.classList.contains("schemes")
                 ) {
-                    console.log("Нашли .auth-wrapper при изменении атрибутов");
                     addFoldButton();
                     obs.disconnect();
                     return;
@@ -74,14 +86,28 @@ function observeWrapper(): void {
         subtree: true,
         attributeFilter: ["class"],
     });
-}
+};
 
-(function main() {
+const foldAll = (): void => {
+    const openButtons = document.querySelectorAll('h3.opblock-tag[data-is-open="true"]');
+    openButtons.forEach((btn) => {
+        if (btn instanceof HTMLElement)
+            btn.click();
+    });
+};
+
+const unfoldAll = (): void => {
+    const openButtons = document.querySelectorAll('h3.opblock-tag[data-is-open="false"]');
+    openButtons.forEach((btn) => {
+        if (btn instanceof HTMLElement)
+            btn.click();
+    });
+};
+
+(() => {
     if (document.querySelector(".schemes")) {
-        console.log("Элемент .auth-wrapper уже есть, добавляем кнопку сразу");
         addFoldButton();
     } else {
-        console.log("Элемента .auth-wrapper пока нет, включаем наблюдение");
         observeWrapper();
     }
 })();
