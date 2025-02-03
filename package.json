@@ -9,11 +9,10 @@
   },
   "devDependencies": {
     "@types/chrome": "^0.0.299",
-    "typescript": "^5.5.3"
+    "typescript": "^5.7.3"
   },
   "engineStrict": false,
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=9.6.0"
+    "bun": ">=1.2.2"
   }
 }
