@@ -8,5 +8,5 @@
     "skipLibCheck": true,
     "outDir": "output/scripts"
   },
-  "include": ["."]
+  "include": ["src"]
 }

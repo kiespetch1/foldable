@@ -2,6 +2,7 @@
   "name": "foldable",
   "version": "0.0.1",
   "description": "",
+  "private": true,
   "main": "output/index.js",
   "scripts": {
     "build": "tsc"
@@ -10,5 +11,9 @@
     "@types/chrome": "^0.0.299",
     "typescript": "^5.5.3"
   },
-  "private": true
+  "engineStrict": false,
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=9.6.0"
+  }
 }
