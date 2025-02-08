@@ -1,53 +1,34 @@
-function addFoldButton(): void {
-    const wrapper = document.querySelector<HTMLElement>(".schemes.wrapper.block.col-12");
-    const authWrapper = document.querySelector<HTMLElement>(".btn.authorize.unlocked");
-    if (!authWrapper) {
-        console.error(
-            "cannot find .btn.authorize.unlocked element"
-        )
-        return
-    }
-    if (!wrapper) {
-        console.error(
-            "cannot find .schemes.wrapper.block.col-12 element"
-        )
-        return
-    }
+function addButtonPanel(): void {
+    const buttonsContainer = document.createElement("button");
+    buttonsContainer.classList.add("floating-buttons");
 
-    const foldButton = document.createElement("button");
-    foldButton.classList.add("btn", "authorize", "unlocked");
-    const foldButtonContent = document.createElement("span");
-    foldButtonContent.textContent = "Fold all";
+    const expandButton = document.createElement("button");
+    expandButton.classList.add("expand-button");
+    expandButton.onclick = expandAll;
+    expandButton.title = "Expand all";
 
-    const unfoldButton = document.createElement("button");
-    unfoldButton.classList.add("btn", "authorize", "unlocked");
-    const unfoldButtonContent = document.createElement("span");
-    unfoldButtonContent.textContent = "Unfold all";
+    const divider = document.createElement("div");
+    divider.classList.add("floating-buttons-divider");
 
-    const arrowDownSvg = document.createElement("img");
-    arrowDownSvg.src = chrome.runtime.getURL("images/assets/arrow-down.svg")
-    arrowDownSvg.alt = "Arrow down";
-    arrowDownSvg.classList.add("mt-2")
-    const arrowUpSvg = document.createElement("img");
-    arrowUpSvg.src = chrome.runtime.getURL("images/assets/arrow-up.svg")
-    arrowUpSvg.alt = "Arrow up";
-    arrowUpSvg.classList.add("mt-2")
+    const collapseButton = document.createElement("button");
+    collapseButton.classList.add("collapse-button");
+    collapseButton.onclick = collapseAll;
+    collapseButton.title = "Collapse all";
 
-    foldButton.classList.add("flex", "items-center");
-    foldButton.appendChild(foldButtonContent);
-    foldButton.appendChild(arrowUpSvg);
-    foldButton.onclick = foldAll;
+    const expandSvg = document.createElement("img");
+    expandSvg.src = chrome.runtime.getURL("images/assets/expand.svg");
+    expandSvg.alt = "Expand all";
 
-    unfoldButton.classList.add("flex", "items-center");
-    unfoldButton.appendChild(unfoldButtonContent);
-    unfoldButton.appendChild(arrowDownSvg);
-    unfoldButton.onclick = unfoldAll;
+    const collapseSvg = document.createElement("img");
+    collapseSvg.src = chrome.runtime.getURL("images/assets/collapse.svg");
+    collapseSvg.alt = "Collapse all";
 
-    authWrapper.classList.add("m-0-i");
-    wrapper.classList.add("justify-end", "gap-10")
-    wrapper.id = "buttons-wrapper";
-    wrapper.appendChild(foldButton);
-    wrapper.appendChild(unfoldButton);
+    document.body.appendChild(buttonsContainer);
+    buttonsContainer.appendChild(expandButton);
+    expandButton.appendChild(expandSvg);
+    buttonsContainer.appendChild(divider)
+    buttonsContainer.appendChild(collapseButton);
+    collapseButton.appendChild(collapseSvg);
 }
 
 const findAuthWrapperInNode = (node: Node): boolean => {
@@ -69,7 +50,7 @@ const observeWrapper = (): void => {
             if (mutation.type === "childList") {
                 for (const addedNode of mutation.addedNodes) {
                     if (findAuthWrapperInNode(addedNode)) {
-                        addFoldButton();
+                        addButtonPanel();
                         obs.disconnect();
                         return;
                     }
@@ -81,7 +62,7 @@ const observeWrapper = (): void => {
                     mutation.target instanceof Element &&
                     mutation.target.classList.contains("schemes")
                 ) {
-                    addFoldButton();
+                    addButtonPanel();
                     obs.disconnect();
                     return;
                 }
@@ -97,7 +78,7 @@ const observeWrapper = (): void => {
     });
 };
 
-const foldAll = (): void => {
+const collapseAll = (): void => {
     const openButtons = document.querySelectorAll('h3.opblock-tag[data-is-open="true"]');
     openButtons.forEach((btn) => {
         if (btn instanceof HTMLElement)
@@ -105,7 +86,7 @@ const foldAll = (): void => {
     });
 };
 
-const unfoldAll = (): void => {
+const expandAll = (): void => {
     const openButtons = document.querySelectorAll('h3.opblock-tag[data-is-open="false"]');
     openButtons.forEach((btn) => {
         if (btn instanceof HTMLElement)
