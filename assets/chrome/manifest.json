@@ -9,13 +9,8 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "images/assets/collapse.svg",
-        "images/assets/expand.svg"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
+      "resources": ["images/assets/collapse.svg", "images/assets/expand.svg"],
+      "matches": ["<all_urls>"]
     }
   ],
   "host_permissions": [
