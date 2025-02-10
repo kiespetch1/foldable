@@ -2,13 +2,24 @@
   "name": "foldable",
   "version": "0.0.2",
   "description": "",
+  "private": true,
   "main": "output/index.js",
   "scripts": {
-    "build": "tsc"
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit",
+    "format": "prettier --write .",
+    "build:chrome": "bun build.ts chrome",
+    "build:firefox": "bun build.ts firefox"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.2",
     "@types/chrome": "^0.0.299",
-    "typescript": "^5.5.3"
+    "@types/firefox-webext-browser": "^120.0.4",
+    "prettier": "^3.5.0",
+    "typescript": "^5.7.3"
   },
-  "private": true
+  "engineStrict": false,
+  "engines": {
+    "bun": ">=1.2.2"
+  }
 }

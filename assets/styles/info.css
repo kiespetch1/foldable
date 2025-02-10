@@ -1,0 +1,27 @@
+﻿.body {
+  background-color: #f7fafc;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  min-width: 400px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #89bf04;
+}
+
+.description {
+  color: #3b4151;
+  margin-top: 8px;
+  font-size: 1rem;
+}
