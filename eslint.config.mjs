@@ -15,7 +15,7 @@ const compat = new FlatCompat({
 });
 
 export default [
-  { ignores: ['output', 'node_modules'] },
+  { ignores: ['output', 'node_modules', 'assets/scripts'] },
   ...compat.extends('eslint:recommended', 'plugin:@typescript-eslint/recommended'),
   {
     plugins: { 'check-file': checkFile },

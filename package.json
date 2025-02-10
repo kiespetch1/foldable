@@ -5,13 +5,17 @@
   "private": true,
   "main": "output/index.js",
   "scripts": {
-    "build:chrome": "bun run build.ts chrome",
-    "build:firefox": "bun run build.ts firefox"
+    "lint": "eslint .",
+    "check-types": "tsc --noEmit",
+    "format": "prettier --write .",
+    "build:chrome": "./build.ts chrome",
+    "build:firefox": "./build.ts firefox"
   },
   "devDependencies": {
     "@types/bun": "^1.2.2",
     "@types/chrome": "^0.0.299",
     "@types/firefox-webext-browser": "^120.0.4",
+    "prettier": "^3.5.0",
     "typescript": "^5.7.3"
   },
   "engineStrict": false,

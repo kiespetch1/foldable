@@ -18,11 +18,11 @@ function addButtonPanel(): void {
     collapseButton.title = "Collapse all";
 
     const expandSvg = document.createElement("img");
-    expandSvg.src = chrome.runtime.getURL("images/assets/expand.svg");
+    expandSvg.src = current.runtime.getURL("images/assets/expand.svg");
     expandSvg.alt = "Expand all";
 
     const collapseSvg = document.createElement("img");
-    collapseSvg.src = chrome.runtime.getURL("images/assets/collapse.svg");
+    collapseSvg.src = current.runtime.getURL("images/assets/collapse.svg");
     collapseSvg.alt = "Collapse all";
 
     document.body.appendChild(buttonsContainer);
