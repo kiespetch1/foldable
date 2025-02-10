@@ -25,11 +25,11 @@ function addFoldButton(): void {
     unfoldButtonContent.textContent = "Unfold all";
 
     const arrowDownSvg = document.createElement("img");
-    arrowDownSvg.src = chrome.runtime.getURL("images/assets/arrow-down.svg")
+    arrowDownSvg.src = browser.runtime.getURL("images/assets/arrow-down.svg")
     arrowDownSvg.alt = "Arrow down";
     arrowDownSvg.classList.add("mt-2")
     const arrowUpSvg = document.createElement("img");
-    arrowUpSvg.src = chrome.runtime.getURL("images/assets/arrow-up.svg")
+    arrowUpSvg.src = browser.runtime.getURL("images/assets/arrow-up.svg")
     arrowUpSvg.alt = "Arrow up";
     arrowUpSvg.classList.add("mt-2")
 

@@ -5,10 +5,13 @@
   "private": true,
   "main": "output/index.js",
   "scripts": {
-    "build": "tsc"
+    "build:chrome": "bun run build.ts chrome",
+    "build:firefox": "bun run build.ts firefox"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.2",
     "@types/chrome": "^0.0.299",
+    "@types/firefox-webext-browser": "^120.0.4",
     "typescript": "^5.7.3"
   },
   "engineStrict": false,

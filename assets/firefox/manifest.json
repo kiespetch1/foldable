@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "foldable",
+  "description": "Allows you to easily fold and unfold Swagger UI tabs",
+  "version": "0.1",
+  "applications": {
+    "gecko": {
+      "id": "foldable@whatever.com",
+      "strict_min_version": "60.0"
+    }
+  },
+  "browser_action": {
+    "default_popup": "info.html",
+    "default_icon": "images/icon-128.png"
+  },
+  "web_accessible_resources": [
+    "images/assets/arrow-down.svg",
+    "images/assets/arrow-up.svg"
+  ],
+  "permissions": [
+    "https://localhost:*/*",
+    "http://localhost:*/*",
+    "https://*.r-tech.addcode.ru/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://localhost/*",
+        "http://localhost/*",
+        "https://*.r-tech.addcode.ru/*"
+      ],
+      "css": ["styles/scripts.css"],
+      "js": ["scripts/index.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
