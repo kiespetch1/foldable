@@ -1,3 +1,5 @@
+const current = window.chrome ?? browser
+
 function addFoldButton(): void {
     const wrapper = document.querySelector<HTMLElement>(".schemes.wrapper.block.col-12");
     const authWrapper = document.querySelector<HTMLElement>(".btn.authorize.unlocked");
@@ -25,11 +27,11 @@ function addFoldButton(): void {
     unfoldButtonContent.textContent = "Unfold all";
 
     const arrowDownSvg = document.createElement("img");
-    arrowDownSvg.src = browser.runtime.getURL("images/assets/arrow-down.svg")
+    arrowDownSvg.src = current.runtime.getURL("images/assets/arrow-down.svg")
     arrowDownSvg.alt = "Arrow down";
     arrowDownSvg.classList.add("mt-2")
     const arrowUpSvg = document.createElement("img");
-    arrowUpSvg.src = browser.runtime.getURL("images/assets/arrow-up.svg")
+    arrowUpSvg.src = current.runtime.getURL("images/assets/arrow-up.svg")
     arrowUpSvg.alt = "Arrow up";
     arrowUpSvg.classList.add("mt-2")
 

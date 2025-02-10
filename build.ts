@@ -19,7 +19,7 @@ if (target !== "chrome" && target !== "firefox") {
 }
 
 async function isExists(path: string): Promise<boolean> {
-    const file = await Bun.file(path);
+    const file = Bun.file(path);
     return await file.exists();
 }
 
