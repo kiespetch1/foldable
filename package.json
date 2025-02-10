@@ -8,8 +8,8 @@
     "lint": "eslint .",
     "check-types": "tsc --noEmit",
     "format": "prettier --write .",
-    "build:chrome": "./build.ts chrome",
-    "build:firefox": "./build.ts firefox"
+    "build:chrome": "bun build.ts chrome",
+    "build:firefox": "bun build.ts firefox"
   },
   "devDependencies": {
     "@types/bun": "^1.2.2",
