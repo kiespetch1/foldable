@@ -44,6 +44,7 @@ await checkDirectory("assets\\scripts")
 await checkDirectory("assets\\styles")
 await checkDirectory(`assets\\${target}`)
 await checkFile(`assets\\${target}\\manifest.json`)
+await checkFile("assets\\info.html")
 await checkFile("tsconfig.json")
 
 if (await isExists("output")) {
@@ -77,5 +78,6 @@ await copyPath("assets\\images", "output\\images")
 await copyPath("assets\\scripts", "output\\scripts")
 await copyPath("assets\\styles", "output\\styles")
 await copyPath(`assets\\${target}\\manifest.json`, "output\\manifest.json")
+await copyPath("assets\\info.html", "output\\info.html")
 
 console.log("Build completed successfully")
