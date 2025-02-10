@@ -1,5 +1,6 @@
 import {parseArgs} from "util"
 import {rm, mkdir, readdir} from "node:fs/promises";
+import path from "node:path";
 
 const args = parseArgs({
     args: Bun.argv,
@@ -39,12 +40,12 @@ async function checkDirectory(dirPath: string): Promise<boolean> {
     }
 }
 
-await checkDirectory("assets\\images")
-await checkDirectory("assets\\scripts")
-await checkDirectory("assets\\styles")
-await checkDirectory(`assets\\${target}`)
-await checkFile(`assets\\${target}\\manifest.json`)
-await checkFile("assets\\info.html")
+await checkDirectory(path.resolve("assets", "images"))
+await checkDirectory(path.resolve("assets", "scripts"))
+await checkDirectory(path.resolve("assets", "styles"))
+await checkDirectory(path.resolve("assets", target))
+await checkFile(path.resolve("assets", target, "manifest.json"))
+await checkFile(path.resolve("assets", "info.html"))
 await checkFile("tsconfig.json")
 
 if (await isExists("output")) {
@@ -64,8 +65,8 @@ async function copyPath(src: string, dest: string): Promise<void> {
         await mkdir(dest, { recursive: true });
         const entries = await readdir(src, { withFileTypes: true });
         for (const entry of entries) {
-            const srcPath = `${src}\\${entry.name}`;
-            const destPath = `${dest}\\${entry.name}`;
+            const srcPath = path.resolve(src, entry.name);
+            const destPath = path.resolve(dest, entry.name);
             await copyPath(srcPath, destPath);
         }
     } else {
@@ -74,10 +75,10 @@ async function copyPath(src: string, dest: string): Promise<void> {
     }
 }
 
-await copyPath("assets\\images", "output\\images")
-await copyPath("assets\\scripts", "output\\scripts")
-await copyPath("assets\\styles", "output\\styles")
-await copyPath(`assets\\${target}\\manifest.json`, "output\\manifest.json")
-await copyPath("assets\\info.html", "output\\info.html")
+await copyPath(path.resolve("assets", "images"), path.resolve("output", "images"))
+await copyPath(path.resolve("assets", "scripts"), path.resolve("output", "scripts"))
+await copyPath(path.resolve("assets", "styles"), path.resolve("output", "styles"))
+await copyPath(path.resolve("assets", target, "manifest.json"), path.resolve("output", "manifest.json"))
+await copyPath(path.resolve("assets", "info.html"), path.resolve("output", "info.html"))
 
 console.log("Build completed successfully")
